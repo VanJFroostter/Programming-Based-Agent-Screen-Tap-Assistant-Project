@@ -30,10 +30,11 @@ In essence, the workflow works like a precompilation pipeline: developers predef
 
 ## Current Testing Scope
 
-The system has not yet been integrated into Agent screen-tap test pipelines. Validated test cases so far include email classification and web gold price data scraping with automated decision output. The detailed execution pipeline is outlined as follows:
+The system has not yet been integrated into Agent screen-tap test pipelines. Validated test cases so far include web gold price data scraping with automated decision output.(Branch LLM info gathering).  Email classification(branch local script info gathering) is under developing and will be done in few days. The detailed execution pipeline is outlined as follows:
 
 ![Agent Workflow Diagram](./exported_image4.png)
 
+Agent screenshot info gathering will need more time to fuse this model with openclaw, for which I expect more developer or it will take about a month.
 
 现在的agent屏幕点击、滑动、输入等决策需要消耗大量的token。Jev提出一种思路，将这些简单任务用json语言抽象为state-choice的模式，并训练ai解决state-choice问题。然而，如果能够抽象为state-choice模式的话，那么，用AI编写程序来解决这些简单问题会更加高效，而且0幻觉率。因此，作者做这个项目的目的是为了制作一个编译器，它辅助AI训练出一个可以高效进行这些简单任务的程序。
 
@@ -47,11 +48,15 @@ The system has not yet been integrated into Agent screen-tap test pipelines. Val
 
 相当于预编译一个程序，把它的json，state和choice，还有窗口交互结构写好，然后让AI把它编写完善，完善到能够利用这套结构完成大批量简单任务。
 
-![Agent Workflow Diagram](./exported_image3.png)
+
 
 具体的架构分为三步：1 训练程序调用AI针对某个任务设计出一个主程序 2 主程序，要么是通过脚本在本地采集Json信息并运算，要么是通过LLM采集信息，并转换为Json格式进行运算。 3 训练程序可以拾取结果进行反馈，让AI修改代码，以实现更流畅的操作
 
-目前该程序尚未接入Agent试验屏幕点击功能，仅试验了邮件分类功能，以及调取网页黄金价格信息输出决策的功能。具体流程如下：
+目前该程序尚未接入Agent试验屏幕点击功能，仅实验调取网页黄金价格信息输出决策（LLM联网信息抓取Branch）的功能。邮件分类功能（本地脚本抓取branch）会在接下来几天推出。具体流程如下：
+
+![Agent Workflow Diagram](./exported_image3.png)
+
+希望更多开发者的帮助，否则实现屏幕点击（屏幕识别抓取信息branch）需要与openclaw融合，可能需要大概一个月或更长时间。
 
 
 
